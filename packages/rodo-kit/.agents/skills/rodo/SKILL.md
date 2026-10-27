@@ -5,7 +5,7 @@ description: RODO project method. Use whenever the repo has a rodo/ folder or *.
 
 > یادداشت فارسی: این مهارت برای AI است. نسخهٔ انسانی همین قواعد در `rodo/<project>/RULES.md` است. RODO فقط «روش کار» است: هیچ ابزاری جلوی commit، تست یا کار را نمی‌گیرد.
 
-# RODO method (kit 2.2.0)
+# RODO method (kit 2.2.1)
 
 RODO is a way of working, not a gate. Nothing blocks a commit, a test or a status. You follow it because it keeps the project understandable for the user, for teammates and for the next AI session.
 
@@ -163,6 +163,6 @@ Card format details: the comments in `templates/card.rodo.md` and `rodo validate
 | `rodo new "<title>"` | create the next cycle folder with `card.rodo.md`, `simple.md`, `spec.md` (`--major` adds `design.md` and `acceptance.feature`) |
 | `rodo validate` | check card files (never blocks; `--strict` exits 1 on errors, for CI) |
 | `rodo doctor` | find setup problems |
-| `rodo init` | install/update the kit, bind a board. **Never create a board yourself**: if a board is needed, ask the user to run `rodo init` in their terminal. |
+| `rodo init` | install/update the kit, bind a board (`--method-only`, `--connect <code>`, `--board <id>`, `--create-board`). **Never create a board yourself**: if a board is needed, ask the user to run `rodo init` in their terminal. |
 
 Optional, if available in the project: Graphify (code map, for Documentation Impact and finding affected code) and Context7 (current library docs). Never install them yourself; RODO works without them.

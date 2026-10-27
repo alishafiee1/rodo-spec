@@ -40,7 +40,7 @@ describe('kit manifest', () => {
   it('lists every kit file with the right version and no 2.0 install scripts', () => {
     const m = JSON.parse(read('kit-manifest.json'));
     expect(m.version).toBe(read('KIT_VERSION').trim());
-    expect(m.version).toBe('2.2.0');
+    expect(m.version).toBe('2.2.1');
     expect(m.files.map((f: { src: string }) => f.src).sort()).toEqual(walk('.agents').sort());
     expect(m.projectTemplate.map((f: { src: string }) => f.src).sort()).toEqual(walk('project-template').sort());
     // fixtures/kit-2.0.0 keeps the old 2.0 scripts on purpose (legacy-hash and migration tests); it is never bundled
@@ -180,7 +180,7 @@ describe('playbooks and RULES.md (tests 7-8, R12-R15)', () => {
 
   it('the agents block is the short ref/14 §9 text', () => {
     const b = read('agents-block.md');
-    expect(b).toContain('kit 2.2.0');
+    expect(b).toContain('kit 2.2.1');
     expect(b).toContain('Never run `git pull`, `git fetch`, `git merge` or `git rebase`');
   });
 });

@@ -1,4 +1,4 @@
-# The RODO method: guide for people (kit 2.2.0)
+# The RODO method: guide for people (kit 2.2.1)
 
 > This file is for you, not for the AI. The AI reads the same rules from `.agents/skills/rodo/`.
 

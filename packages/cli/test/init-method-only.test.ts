@@ -10,7 +10,7 @@ describe('rodo init --method-only', () => {
     const r = await init(repo, { project: 'shop', methodOnly: true, yesFiles: true });
     expect(r.code).toBe(0);
     expect(repo.exists('.agents/skills/rodo/SKILL.md')).toBe(true);
-    expect(JSON.parse(repo.read('rodo/kit.json')).kitVersion).toBe('2.2.0');
+    expect(JSON.parse(repo.read('rodo/kit.json')).kitVersion).toBe('2.2.1');
     const pj = JSON.parse(repo.read('rodo/shop/project.json'));
     expect(pj).toMatchObject({ schemaVersion: 2, projectSlug: 'shop', boardId: null, repoFingerprint: null });
     for (const f of ['MAP.md', 'MEMORY.md', 'RULES.md', 'CHANGELOG.md', 'project/brief.md', 'project/architecture.md', 'project/glossary.md']) {
