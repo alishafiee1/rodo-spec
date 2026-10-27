@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "board": {},
+    "lists": [
+      {
+        "id": "1",
+        "title": "برنامه",
+        "workflowRole": "START",
+        "position": "a"
+      },
+      {
+        "id": "2",
+        "title": "کار",
+        "workflowRole": "ACTIVE",
+        "position": "b"
+      },
+      {
+        "id": "3",
+        "title": "انجام",
+        "workflowRole": "END",
+        "position": "c"
+      }
+    ],
+    "labels": [
+      {
+        "name": "bug",
+        "color": "PINK"
+      }
+    ],
+    "members": [
+      {
+        "username": "sara",
+        "name": "سارا"
+      }
+    ],
+    "capabilities": {
+      "formatVersions": [
+        1,
+        2
+      ],
+      "cardStatuses": [
+        "todo",
+        "in_progress",
+        "done"
+      ],
+      "blockerTypes": [],
+      "decisions": true,
+      "simpleDoc": true,
+      "approval": true
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "missingFiles": [
+    "/src/a.ts"
+  ],
+  "baseFile": "known-missing.base.rodo.md"
+}

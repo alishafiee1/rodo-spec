@@ -1,0 +1,15 @@
+{
+  "name": "@rodo/rodo-kit",
+  "version": "2.2.0",
+  "private": true,
+  "description": "RODO method kit. Bundled into rodo-spec; only content and tests here.",
+  "scripts": {
+    "manifest": "node scripts/gen-manifest.mjs",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@rodo/card-format": "workspace:*",
+    "vitest": "^3.1.1"
+  },
+  "license": "MIT"
+}

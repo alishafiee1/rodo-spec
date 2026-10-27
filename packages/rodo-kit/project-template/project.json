@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 2,
+  "projectSlug": "{{slug}}",
+  "name": "{{name}}",
+  "serverUrl": null,
+  "boardId": null,
+  "repoFingerprint": null,
+  "language": { "simple": "fa", "technical": "en" },
+  "testCommand": null,
+  "stepsDirs": []
+}

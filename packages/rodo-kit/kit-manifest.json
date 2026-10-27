@@ -1,0 +1,228 @@
+{
+  "version": "2.2.0",
+  "files": [
+    {
+      "src": ".agents/skills/rodo/SKILL.md",
+      "dest": ".agents/skills/rodo/SKILL.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/coder.md",
+      "dest": ".agents/skills/rodo/coder.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/onboarding.md",
+      "dest": ".agents/skills/rodo/onboarding.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/planner.md",
+      "dest": ".agents/skills/rodo/planner.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/small-change.md",
+      "dest": ".agents/skills/rodo/small-change.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/acceptance.feature",
+      "dest": ".agents/skills/rodo/templates/acceptance.feature",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/card.rodo.md",
+      "dest": ".agents/skills/rodo/templates/card.rodo.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/design.md",
+      "dest": ".agents/skills/rodo/templates/design.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/en/acceptance.feature",
+      "dest": ".agents/skills/rodo/templates/en/acceptance.feature",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/en/card.rodo.md",
+      "dest": ".agents/skills/rodo/templates/en/card.rodo.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/en/request.rodo.md",
+      "dest": ".agents/skills/rodo/templates/en/request.rodo.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/en/simple.md",
+      "dest": ".agents/skills/rodo/templates/en/simple.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/request.rodo.md",
+      "dest": ".agents/skills/rodo/templates/request.rodo.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/simple.md",
+      "dest": ".agents/skills/rodo/templates/simple.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/templates/spec.md",
+      "dest": ".agents/skills/rodo/templates/spec.md",
+      "owner": "kit"
+    },
+    {
+      "src": ".agents/skills/rodo/testing.md",
+      "dest": ".agents/skills/rodo/testing.md",
+      "owner": "kit"
+    }
+  ],
+  "legacyHashes": {
+    "AGENTS.md": [
+      "sha256:936df4b30128738e224072e1c3aebbe8899793e9582da97966a64c13a01395e4"
+    ],
+    "CLAUDE.md": [
+      "sha256:336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+    ],
+    ".agents/skills/rodo/SKILL.md": [
+      "sha256:a06382e130c46d0d7fc8ebfed4610a829496be1d0830ba79bf3135fa2da7b05b"
+    ],
+    ".agents/skills/rodo/coder.md": [
+      "sha256:6a5b3632e4c3b8065e8611fea5c267719bd9eddc797a7987723f78ef055e49b4"
+    ],
+    ".agents/skills/rodo/onboarding.md": [
+      "sha256:cd7cd64e646ff1762dd3b7fa27a6441f76222a3ad153d092f6120c9d9d11d0de"
+    ],
+    ".agents/skills/rodo/planner.md": [
+      "sha256:36e6082c88920c2bf03f51e2e1a93f92cd2d06406d42a1cda357a65ca85f89e3"
+    ],
+    ".agents/skills/rodo/small-change.md": [
+      "sha256:7bb7ceb277773e1ec4ed351ce0591e39dc5ba0911e0a32cce358ae16e2358c12"
+    ],
+    ".agents/skills/rodo/templates/CHANGELOG.md": [
+      "sha256:74b575d434805ef245587bf704f0cda130d2cd0fb37e2499834853e0f372a059"
+    ],
+    ".agents/skills/rodo/templates/MAP.md": [
+      "sha256:9597d20bc5871cd5699f03e18b16356d06f212de37afe52ddfd3fd3f3e7ed200"
+    ],
+    ".agents/skills/rodo/templates/MEMORY.md": [
+      "sha256:68920278b000efa6b64cc206553720e14cb8af3a4154623e5babef3a745c0e03"
+    ],
+    ".agents/skills/rodo/templates/acceptance.feature": [
+      "sha256:0156ea9eb06f09de596a52a5ad2b1852b351d9cbe7a28230a4f90a2138a4b131"
+    ],
+    ".agents/skills/rodo/templates/architecture.md": [
+      "sha256:ecf9d97143671824620c74c9d3d0e19514b242a4b6c1552440802a198d7e2972"
+    ],
+    ".agents/skills/rodo/templates/brief.md": [
+      "sha256:085f4338ac8cb8c6b9afb1fd22a5a8aed9cf5694f2a2183e47a1fac6a0db9490"
+    ],
+    ".agents/skills/rodo/templates/card.rodo.md": [
+      "sha256:6639b0b83bf25d8355f576b367e8fa10b51b0f5e7f100b5257c78cb4d3d0cc6a"
+    ],
+    ".agents/skills/rodo/templates/config.json": [
+      "sha256:0c07d153aad92e647a8211a54cf696cfad5ac1445593383738da4cf29108f669"
+    ],
+    ".agents/skills/rodo/templates/glossary.md": [
+      "sha256:0a5b2eff02a30ad5753547929789c8f3a6e39158ab65b433198e9845df42dfb6"
+    ],
+    ".agents/skills/rodo/templates/simple.md": [
+      "sha256:b81908a8886698cce148400113a2525f6c44cf34c8e412290ba1652b3b928b6f"
+    ],
+    ".agents/skills/rodo/templates/spec.md": [
+      "sha256:3f9f0bcbdf75f7a1981eb52efdbc2bab90107161af83cd342a2de514b56e1a25"
+    ],
+    ".agents/skills/rodo/testing.md": [
+      "sha256:0cb154fdf25dc5222a63973ad97d7e02a3c3093b800f0072eb1fd58423c32c41"
+    ]
+  },
+  "projectTemplate": [
+    {
+      "src": "project-template/CHANGELOG.md",
+      "dest": "CHANGELOG.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/MAP.md",
+      "dest": "MAP.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/MEMORY.md",
+      "dest": "MEMORY.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/RULES.md",
+      "dest": "RULES.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/project.json",
+      "dest": "project.json",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/project/architecture.md",
+      "dest": "project/architecture.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/project/brief.md",
+      "dest": "project/brief.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template/project/glossary.md",
+      "dest": "project/glossary.md",
+      "owner": "project"
+    }
+  ],
+  "projectTemplateEn": [
+    {
+      "src": "project-template-en/CHANGELOG.md",
+      "dest": "CHANGELOG.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/MAP.md",
+      "dest": "MAP.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/MEMORY.md",
+      "dest": "MEMORY.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/RULES.md",
+      "dest": "RULES.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/project.json",
+      "dest": "project.json",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/project/architecture.md",
+      "dest": "project/architecture.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/project/brief.md",
+      "dest": "project/brief.md",
+      "owner": "project"
+    },
+    {
+      "src": "project-template-en/project/glossary.md",
+      "dest": "project/glossary.md",
+      "owner": "project"
+    }
+  ]
+}

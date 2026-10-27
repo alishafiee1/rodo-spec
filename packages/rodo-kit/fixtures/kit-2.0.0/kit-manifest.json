@@ -1,0 +1,11 @@
+{
+  "name": "rodo-method",
+  "version": "2.0.0",
+  "comment": "Files owned by the kit. rodo-install adds them when missing; rodo-update replaces ONLY these. Neither touches rodo/ (except rodo/.kit-version), AGENTS.md, CLAUDE.md or your code. The kit installs no git hooks and no CI checks.",
+  "files": [
+    ".agents/skills/rodo/",
+    "scripts/lib/core.cjs",
+    "scripts/rodo-install.cjs",
+    "scripts/rodo-update.cjs"
+  ]
+}

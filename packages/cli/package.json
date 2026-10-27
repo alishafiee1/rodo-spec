@@ -1,0 +1,50 @@
+{
+  "name": "rodo-spec",
+  "version": "2.2.0",
+  "description": "RODO method CLI \u2014 install the kit, manage cards, sync with the board",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n3xus-ir/rodo-spec.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/n3xus-ir/rodo-spec#readme",
+  "keywords": [
+    "rodo",
+    "rodo-spec",
+    "kanban",
+    "cli",
+    "spec",
+    "ai-agent"
+  ],
+  "bin": {
+    "rodo": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepack": "pnpm run build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@rodo/card-format": "workspace:*",
+    "@rodo/protocol": "workspace:*",
+    "@rodo/rodo-kit": "workspace:*",
+    "@types/node": "^22.0.0",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "yaml": "^2.7.0"
+  }
+}

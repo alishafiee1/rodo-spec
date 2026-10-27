@@ -1,0 +1,13 @@
+{
+  "name": "gol-maryam",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "test:acceptance": "bddgen && playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "playwright-bdd": "^9.2.0"
+  }
+}

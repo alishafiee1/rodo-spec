@@ -1,0 +1,289 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`--json snapshots (R9) > doctor 1`] = `
+{
+  "checks": [
+    {
+      "id": "node",
+      "level": "OK",
+      "message": "Node <v>",
+      "project": null,
+    },
+    {
+      "id": "git",
+      "level": "OK",
+      "message": "git repository",
+      "project": null,
+    },
+    {
+      "id": "layout",
+      "level": "OK",
+      "message": "project.json valid",
+      "project": "shop",
+    },
+    {
+      "id": "kit",
+      "level": "OK",
+      "message": "kit <v>",
+      "project": null,
+    },
+    {
+      "id": "gitignore",
+      "level": "OK",
+      "message": ".gitignore has the RODO lines",
+      "project": null,
+    },
+    {
+      "id": "credentials",
+      "level": "SKIP",
+      "message": "not connected",
+      "project": null,
+    },
+    {
+      "id": "server",
+      "level": "SKIP",
+      "message": "not connected",
+      "project": null,
+    },
+    {
+      "id": "token",
+      "level": "SKIP",
+      "message": "not connected",
+      "project": null,
+    },
+    {
+      "id": "clock",
+      "level": "SKIP",
+      "message": "not connected",
+      "project": null,
+    },
+    {
+      "id": "repository",
+      "level": "SKIP",
+      "message": "not connected",
+      "project": "shop",
+    },
+    {
+      "id": "binding",
+      "level": "SKIP",
+      "message": "not connected (no board bound)",
+      "project": "shop",
+    },
+    {
+      "fix": "run rodo validate and fix the errors",
+      "id": "cards",
+      "level": "WARN",
+      "message": "2 card(s), 1 error(s), 0 warning(s)",
+      "project": "shop",
+    },
+    {
+      "id": "secrets",
+      "level": "OK",
+      "message": "no secrets found",
+      "project": "shop",
+    },
+    {
+      "id": "testCommand",
+      "level": "INFO",
+      "message": "no testCommand (tests are optional)",
+      "project": "shop",
+    },
+  ],
+  "version": 1,
+}
+`;
+
+exports[`--json snapshots (R9) > resume 1`] = `
+{
+  "at": "<volatile>",
+  "card": {
+    "key": "004-order-cancel",
+    "path": "rodo/shop/cycles/004-order-cancel/card.rodo.md",
+    "status": "in_progress",
+    "title": "Order cancel",
+    "workflow": null,
+  },
+  "fields": {
+    "APPROVAL": "none",
+    "BLOCKER": "none",
+    "DECISIONS": "open: "Cancel paid orders too?" (A yes, B only unpaid)",
+    "DECISIONS-MEM": [
+      "- <date> — کار پروژه با روش RODO پیش می‌رود. چون AI و آدم‌ها باید از یک نقشه، کارت‌ها و سندهای به‌روز کار کنند.",
+    ],
+    "DONE": "API",
+    "FILES": [
+      "/rodo/shop/cycles/004-order-cancel/simple.md",
+    ],
+    "GOAL": [
+      "The user cancels an unpaid order.",
+    ],
+    "LAST FAIL": "none",
+    "PROJECT": [
+      "A flower shop.",
+    ],
+    "REMAINING": [
+      "button",
+    ],
+    "RULES": "read .agents/skills/rodo/SKILL.md (session protocol) — run \`rodo sync\` at the end",
+    "SCOPE": "none",
+    "TEST": "none (tests are optional)",
+    "WHERE": [
+      "Cart done.",
+    ],
+  },
+  "full": {
+    "project/architecture.md": "# معماری
+
+## بخش‌ها
+
+| بخش | فناوری | مسیر در مخزن | چرا این انتخاب |
+|---|---|---|---|
+| {{مثلاً وب‌سایت}} | {{Next.js}} | \`{{src/}}\` | {{دلیل}} |
+
+## دادهٔ اصلی
+
+{{موجودیت‌ها و رابطه‌هایشان، کوتاه}}
+
+## تست
+
+- تست پذیرش (اختیاری، پیشنهادی): \`playwright-bdd\`. سناریوها در \`rodo/<project>/cycles/*/acceptance.feature\`، step definitionها در \`{{e2e/steps/}}\`. همه: \`{{npm run test:acceptance}}\`. چرخه‌های لغوشده برچسب \`@cancelled\` دارند و در \`playwright.config\` با \`tags: 'not @cancelled'\` کنار گذاشته می‌شوند. یک چرخه: دستور \`testCommand\` در \`project.json\`.
+
+## قواعدی که همه باید بدانند
+
+- {{مثلاً: همهٔ قیمت‌ها به تومان و عدد صحیح ذخیره می‌شوند}}
+",
+    "simple.md": "# simple
+",
+  },
+  "hints": [],
+  "lastSyncAt": null,
+  "project": "shop",
+  "version": 1,
+}
+`;
+
+exports[`--json snapshots (R9) > status 1`] = `
+{
+  "projects": [
+    {
+      "boardId": null,
+      "branch": "<volatile>",
+      "cards": [
+        {
+          "board": null,
+          "errors": 1,
+          "key": "003-gift-wrap",
+          "path": "cycles/003-gift-wrap/card.rodo.md",
+          "status": null,
+          "sync": "invalid (1 error)",
+          "title": "Gift wrap",
+        },
+        {
+          "board": null,
+          "errors": 0,
+          "key": "004-order-cancel",
+          "path": "cycles/004-order-cancel/card.rodo.md",
+          "status": "in_progress",
+          "sync": "not-bound",
+          "title": "Order cancel",
+        },
+      ],
+      "conflicts": [],
+      "head": "<volatile>",
+      "lastSyncAt": null,
+      "project": "shop",
+      "waitingApproval": 0,
+      "waitingDecision": 1,
+    },
+  ],
+  "version": 1,
+}
+`;
+
+exports[`--json snapshots (R9) > sync --offline 1`] = `
+{
+  "mode": "offline",
+  "projects": [
+    {
+      "archived": 0,
+      "clock": {
+        "offsetMs": 0,
+        "source": "system",
+      },
+      "conflicts": [],
+      "created": 0,
+      "files": [
+        {
+          "cardId": null,
+          "errors": [
+            {
+              "code": "STATUS_INVALID",
+              "line": 5,
+              "message": "STATUS_INVALID: status must be todo, in_progress, blocked, cancelled or done (found "doing")",
+            },
+          ],
+          "path": "cycles/003-gift-wrap/card.rodo.md",
+          "warnings": [],
+        },
+      ],
+      "finishedAt": "<volatile>",
+      "mode": "offline",
+      "notes": [
+        "OFFLINE: cards were validated only",
+      ],
+      "project": "shop",
+      "pulled": 0,
+      "pushed": 0,
+      "startedAt": "<volatile>",
+      "summary": {
+        "errors": 1,
+        "files": 2,
+        "warnings": 0,
+      },
+      "version": 1,
+    },
+  ],
+  "version": 1,
+}
+`;
+
+exports[`--json snapshots (R9) > validate 1`] = `
+{
+  "files": [
+    {
+      "errors": [
+        {
+          "code": "STATUS_INVALID",
+          "line": 4,
+          "message": "STATUS_INVALID: status must be todo, in_progress, blocked, cancelled or done (found "doing")",
+        },
+      ],
+      "path": "cycles/003-gift-wrap/card.rodo.md",
+      "project": "shop",
+      "warnings": [],
+    },
+    {
+      "errors": [],
+      "path": "cycles/004-order-cancel/card.rodo.md",
+      "project": "shop",
+      "warnings": [],
+    },
+  ],
+  "summary": {
+    "errors": 1,
+    "files": 2,
+    "warnings": 0,
+  },
+  "version": 2,
+}
+`;
+
+exports[`--json snapshots (R9) > version 1`] = `
+{
+  "cli": "<v>",
+  "kit": "<v>",
+  "minCliVersion": null,
+  "node": "<v>",
+  "version": 1,
+}
+`;

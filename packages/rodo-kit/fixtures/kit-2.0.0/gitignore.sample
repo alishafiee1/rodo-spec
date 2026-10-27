@@ -1,0 +1,3 @@
+# RODO: cards are synced with the board, not with git
+*.rodo.md
+.rodo/

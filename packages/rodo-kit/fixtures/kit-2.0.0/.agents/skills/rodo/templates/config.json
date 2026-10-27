@@ -1,0 +1,7 @@
+{
+  "language": { "simple": "fa", "technical": "en" },
+  "stepsDirs": ["e2e/steps"],
+  "testCommand": "npx bddgen --tags @cycle-{NNN} && npx playwright test --grep @cycle-{NNN}",
+  "kitRepo": "https://github.com/OWNER/rodo-method.git",
+  "kitRef": "main"
+}
