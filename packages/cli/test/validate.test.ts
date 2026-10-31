@@ -20,6 +20,17 @@ describe('rodo validate (R4)', () => {
     expect(r.json().version).toBe(2);
   });
 
+  it('warns PROJECT_DOC_TOO_LONG past the word limit, ignores comments, and never fails --strict', async () => {
+    const repo = await project();
+    expect((await exec(repo, (ctx) => runValidate(ctx, []))).stdout).not.toContain('PROJECT_DOC_TOO_LONG');
+    repo.write('rodo/shop/project/project-overview.md', `<!-- ${'x '.repeat(600)}-->\n${'word '.repeat(500)}\n`);
+    expect((await exec(repo, (ctx) => runValidate(ctx, []))).stdout).not.toContain('PROJECT_DOC_TOO_LONG');
+    repo.write('rodo/shop/project/project-overview.md', 'word '.repeat(501));
+    const r = await exec(repo, (ctx) => runValidate(ctx, [], { strict: true }), { json: true });
+    expect(r.code).toBe(0);
+    expect(r.json().summary.warnings).toBe(1);
+    expect(r.json().files[0]).toMatchObject({ path: 'project/project-overview.md', warnings: [{ code: 'PROJECT_DOC_TOO_LONG' }] });
+  });
   it('reports STATUS_INVALID with the same message as the validator, and exits 0', async () => {
     const repo = await project();
     addCycle(repo, 'shop', '003-gift-wrap', cardText({ status: 'doing' }));

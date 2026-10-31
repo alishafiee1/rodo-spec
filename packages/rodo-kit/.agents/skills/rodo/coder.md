@@ -71,7 +71,8 @@ The folder does not move.
 1. Card: `status: done`.
 2. `MAP.md`: add the cycle under `## انجام‌شده` (one line, link to simple.md or the card folder) and update "الان کجاییم".
 3. `MEMORY.md`: append each `## Decisions` line of spec.md as `- YYYY-MM-DD — <decision>. چون <reason>. (cycle NNN)`.
-4. Commit the MAP and MEMORY change. Later changes to this behaviour need a new card; changes that do not touch behaviour go to `small-change.md`.
+4. `project/project-overview.md` and `project/how-it-works.md`: make them match what was built and tick the part if all of it is finished (`project-docs.md`).
+5. Commit the MAP, MEMORY and project docs change. Later changes to this behaviour need a new card; changes that do not touch behaviour go to `small-change.md`.
 
 ## Rules
 

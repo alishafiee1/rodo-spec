@@ -20,7 +20,7 @@ function newerKit(): void {
   cpSync(KIT, tmpKit, { recursive: true });
   writeFileSync(join(tmpKit, CODER), 'NEW CODER TEXT\n');
   const m = JSON.parse(readFileSync(join(tmpKit, 'kit-manifest.json'), 'utf8'));
-  m.version = '2.2.2-dev';
+  m.version = '2.3.1-dev';
   writeFileSync(join(tmpKit, 'kit-manifest.json'), JSON.stringify(m));
   process.env.RODO_KIT_DIR = tmpKit;
 }
@@ -37,7 +37,7 @@ describe('kit install and update (R1)', () => {
     expect(repo.read(CODER)).toBe('MY EDITED CODER\n');
     expect(repo.read(`${CODER}.rodo-new`)).toBe('NEW CODER TEXT\n');
     expect(r.stdout).toContain(`KIT_FILE_KEPT: ${CODER}`);
-    expect(r.stdout).toContain('2.2.1 → 2.2.2-dev');
+    expect(r.stdout).toContain('2.3.0 → 2.3.1-dev');
   });
 
   it('an unchanged kit file is overwritten with the new version', async () => {

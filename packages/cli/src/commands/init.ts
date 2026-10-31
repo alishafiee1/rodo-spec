@@ -4,7 +4,7 @@ import type { Ctx } from '../core/context';
 import { discover, findRoot } from '../core/discovery';
 import { usage } from '../core/errors';
 import { isGitRepo } from '../core/git';
-import { slugProblem, slugify } from '../core/project';
+import { readProject, slugProblem, slugify } from '../core/project';
 import { installKit } from '../kit/install';
 import { applyMigration, detectLegacy, planMigration } from '../kit/legacy-migrate';
 import { connectProject } from './init-connect';
@@ -86,7 +86,7 @@ export async function runInit(ctx: Ctx, a: InitArgs): Promise<number> {
     out.line(`project rodo/${slug}/: ${existsSync(join(projectDir, 'project.json')) ? 'exists (missing files would be added)' : 'would be created'}`);
   } else {
     const isNew = !existsSync(join(projectDir, 'project.json'));
-    const lang = isNew ? await chooseLanguage(ctx) : 'fa';
+    const lang = isNew ? await chooseLanguage(ctx) : readProject(projectDir, slug).project?.language.simple ?? 'fa';
     const created = scaffoldProject(root, slug, a.name ?? slug, lang);
     if (isNew) data.language = lang;
     out.line(created.length ? `rodo/${slug}/: created ${created.length} file(s)` : `rodo/${slug}/: nothing to add`);

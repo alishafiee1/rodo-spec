@@ -1,6 +1,6 @@
 {
   "name": "rodo-spec-monorepo",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "private": true,
   "description": "RODO method kit, card format, sync protocol, and CLI (rodo-spec)",
   "license": "MIT",

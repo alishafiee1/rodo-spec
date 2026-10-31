@@ -8,7 +8,7 @@ Goal: create `rodo/<project>/` so the project can follow the method, without cha
 
 1. **Read, do not write.** Read README, existing docs, package files, folder structure, git log (last ~100 commits), and TODO/FIXME comments. Skim code by folder; do not read every file.
 2. **Create the skeleton**: run `rodo init --method-only --project <slug>` (if the CLI is installed), or copy `project-template/` into `rodo/<slug>/` yourself. It never overwrites an existing file. Set `language` in `project.json` if the user wants other languages.
-3. **brief.md and architecture.md**: describe what exists today. Mark guesses with `(حدس)` so the user can confirm.
+3. **brief.md and architecture.md**: describe what exists today. Mark guesses with `(حدس)` so the user can confirm. Then write `project/project-overview.md` and `project/how-it-works.md` the same way (`project-docs.md`), ticking only parts that already work.
 4. **MEMORY.md**: decisions visible in the code or docs (framework, database, auth method...). One line each with the reason if known, else `چون: نامعلوم`.
 5. **Finished work → done cycles.** For each finished feature a user can see, create `rodo/<project>/cycles/NNN-slug/` with:
    - `simple.md` whose FIRST line is `<!-- rodo:onboarded -->`, then 3-6 simple lines;

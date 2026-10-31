@@ -1,4 +1,4 @@
-# The RODO method: guide for people (kit 2.2.1)
+# The RODO method: guide for people (kit 2.3.0)
 
 > This file is for you, not for the AI. The AI reads the same rules from `.agents/skills/rodo/`.
 
@@ -38,7 +38,7 @@ rodo/
     ├── MEMORY.md              important decisions, one line each with "because"
     ├── CHANGELOG.md           small changes without a card, one line each
     ├── RULES.md               this file
-    ├── project/               brief, architecture, glossary (always current)
+    ├── project/               brief, architecture, glossary, project-overview, how-it-works (always current)
     └── cycles/NNN-slug/       one folder per card: card.rodo.md, simple.md, spec.md, design.md, acceptance.feature
 ```
 
@@ -63,7 +63,14 @@ For every new feature, change or improvement, and for every change to behaviour 
 - With a board, card files live on the board and arrive through `rodo sync`; `rodo init` adds them to `.gitignore`.
 - `rodo sync` never loses your text: when the board wins a conflict, your file is saved in `rodo/<project>/.rodo/conflicts/`.
 
-## 7. Never
+## 7. The two plain project docs
+
+- `project-overview.md` is the plan for a client: what the project is, its parts, and a tick beside the finished ones.
+- `how-it-works.md` is for you: what the project is built from, how each part works and what it makes easier.
+- If a new feature or major change does not fit them, the AI updates them before work starts and a new part goes in unticked. When the card closes, the text is made true and the part is ticked.
+- They never grow past one or two pages; `rodo validate` warns if they do.
+
+## 8. Never
 
 - No secrets (passwords, keys, tokens) in any file under `rodo/`, in cards or in commit messages.
 - The AI never deletes files without your OK, never creates boards, and never answers decisions or ticks approvals.

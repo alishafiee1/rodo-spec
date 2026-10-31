@@ -1,6 +1,6 @@
 {
   "name": "@rodo/card-format",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "main": "./dist/cjs/index.cjs",

@@ -5,7 +5,7 @@ description: RODO project method. Use whenever the repo has a rodo/ folder or *.
 
 > یادداشت فارسی: این مهارت برای AI است. نسخهٔ انسانی همین قواعد در `rodo/<project>/RULES.md` است. RODO فقط «روش کار» است: هیچ ابزاری جلوی commit، تست یا کار را نمی‌گیرد.
 
-# RODO method (kit 2.2.1)
+# RODO method (kit 2.3.0)
 
 RODO is a way of working, not a gate. Nothing blocks a commit, a test or a status. You follow it because it keeps the project understandable for the user, for teammates and for the next AI session.
 
@@ -86,6 +86,7 @@ A card may have `scope: {allowed: [...], forbidden: [...]}`. Stay inside `allowe
 | The repo has code but no `rodo/<project>/` yet | `onboarding.md` |
 | Typo, style, refactor or a fix that does not change described behaviour | `small-change.md` |
 | You write or fix tests (optional, recommended) | `testing.md` |
+| You write or update `project/project-overview.md` or `project/how-it-works.md` | `project-docs.md` |
 
 ## Workflow levels
 
@@ -122,7 +123,7 @@ Do not turn ordinary clarification questions into `## Decision:` sections, and d
 
 | Kind | Files | Rule |
 |---|---|---|
-| **CURRENT** (canonical) | `rodo/<project>/project/*`, `MAP.md`, `MEMORY.md` | Must describe the code as it is now. Update them in the same work. `MEMORY.md` is append-only: add a new line that says which line it replaces; never rewrite old lines. |
+| **CURRENT** (canonical) | `rodo/<project>/project/*`, `MAP.md`, `MEMORY.md` | Must describe the code as it is now. Update them in the same work. `MEMORY.md` is append-only: add a new line that says which line it replaces; never rewrite old lines. One exception: a planned part in `project-overview.md` (unticked) or `how-it-works.md` (marked `(planned)`) may describe work not built yet (`project-docs.md`). |
 | **ACTIVE CYCLE** | the docs of the card you are working on (`simple.md`, `spec.md`, `design.md`, `acceptance.feature`) | Must match the code when the card is done. |
 | **HISTORICAL** | docs of `done` and `cancelled` cycles | Never rewritten. A later card refers to them; a new decision goes into the new card and `MEMORY.md`. |
 
@@ -142,6 +143,8 @@ Run the checks that fit this change with the project's own tools; RODO runs noth
         project.json                  board binding and settings (no secrets)
         MAP.md  MEMORY.md  RULES.md  CHANGELOG.md
         project/{brief,architecture,glossary}.md
+        project/project-overview.md   the project for a client, parts with ticks
+        project/how-it-works.md       how each part works, for a beginner
         cycles/NNN-slug/
           card.rodo.md                the card (synced with the board, not in git)
           simple.md                   plain explanation (shown read-only on the web)

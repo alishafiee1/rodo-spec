@@ -24,6 +24,7 @@ Yes, for every new feature, change or improvement, and for every change to behav
 - List the current documents this change will make wrong or must extend.
 - Use `MAP.md`, `MEMORY.md`, `project/*`, the active cycle, the card's refs, and a code search (Graphify or similar, if available in the project).
 - Write the list in `spec.md` `## Documentation Impact` (`- <path> — <what changes>`, or `- none — <why>`).
+- **Project docs first:** if a new feature or major change does not fit `project/project-overview.md` or `project/how-it-works.md`, update them before BUILD, following `project-docs.md`. If they are still templates, fill them first.
 - QUICK: do this in your head and fix any doc you made wrong (small-change.md).
 
 ## Classify

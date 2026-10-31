@@ -1,6 +1,6 @@
 {
   "name": "rodo-spec",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "RODO method CLI — install the kit, manage cards, sync with the board",
   "license": "MIT",
   "type": "module",

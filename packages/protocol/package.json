@@ -1,6 +1,6 @@
 {
   "name": "@rodo/protocol",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "private": true,
   "description": "Wire contract (sync API shapes, card statuses) between the RODO CLI and a board server.",
   "license": "MIT",

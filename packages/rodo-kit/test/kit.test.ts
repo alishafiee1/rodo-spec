@@ -40,7 +40,7 @@ describe('kit manifest', () => {
   it('lists every kit file with the right version and no 2.0 install scripts', () => {
     const m = JSON.parse(read('kit-manifest.json'));
     expect(m.version).toBe(read('KIT_VERSION').trim());
-    expect(m.version).toBe('2.2.1');
+    expect(m.version).toBe('2.3.0');
     expect(m.files.map((f: { src: string }) => f.src).sort()).toEqual(walk('.agents').sort());
     expect(m.projectTemplate.map((f: { src: string }) => f.src).sort()).toEqual(walk('project-template').sort());
     // fixtures/kit-2.0.0 keeps the old 2.0 scripts on purpose (legacy-hash and migration tests); it is never bundled
@@ -180,8 +180,24 @@ describe('playbooks and RULES.md (tests 7-8, R12-R15)', () => {
 
   it('the agents block is the short ref/14 §9 text', () => {
     const b = read('agents-block.md');
-    expect(b).toContain('kit 2.2.1');
+    expect(b).toContain('kit 2.3.0');
     expect(b).toContain('Never run `git pull`, `git fetch`, `git merge` or `git rebase`');
+  });
+});
+
+describe('plain project docs (kit 2.3)', () => {
+  it('both languages have the templates with the same structure, and the writing rules are kit-owned', () => {
+    for (const d of ['project-template', 'project-template-en']) {
+      for (const f of ['project-overview.md', 'how-it-works.md']) expect(read(`${d}/project/${f}`)).toContain('project-docs.md');
+      expect(read(`${d}/project/project-overview.md`)).toContain('- [ ] **');
+    }
+    const m = JSON.parse(read('kit-manifest.json'));
+    expect(m.files.map((f: { dest: string }) => f.dest)).toContain(`${SKILL_DIR}/project-docs.md`);
+  });
+
+  it('the playbooks send the planner, the coder and onboarding to the rules', () => {
+    for (const f of ['SKILL.md', 'planner.md', 'coder.md', 'onboarding.md']) expect(read(`${SKILL_DIR}/${f}`), f).toContain('project-docs.md');
+    expect(planner()).toContain('update them before BUILD');
   });
 });
 

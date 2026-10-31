@@ -1,3 +1,5 @@
+import { rmSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { runInit } from '../src/commands/init';
 import { exec, snapshotTree, tempRepo } from './helpers/temp-repo';
@@ -10,10 +12,10 @@ describe('rodo init --method-only', () => {
     const r = await init(repo, { project: 'shop', methodOnly: true, yesFiles: true });
     expect(r.code).toBe(0);
     expect(repo.exists('.agents/skills/rodo/SKILL.md')).toBe(true);
-    expect(JSON.parse(repo.read('rodo/kit.json')).kitVersion).toBe('2.2.1');
+    expect(JSON.parse(repo.read('rodo/kit.json')).kitVersion).toBe('2.3.0');
     const pj = JSON.parse(repo.read('rodo/shop/project.json'));
     expect(pj).toMatchObject({ schemaVersion: 2, projectSlug: 'shop', boardId: null, repoFingerprint: null });
-    for (const f of ['MAP.md', 'MEMORY.md', 'RULES.md', 'CHANGELOG.md', 'project/brief.md', 'project/architecture.md', 'project/glossary.md']) {
+    for (const f of ['MAP.md', 'MEMORY.md', 'RULES.md', 'CHANGELOG.md', 'project/brief.md', 'project/architecture.md', 'project/glossary.md', 'project/project-overview.md', 'project/how-it-works.md']) {
       expect(repo.exists(`rodo/shop/${f}`)).toBe(true);
     }
     expect(repo.read('AGENTS.md')).toContain('<!-- rodo:start -->');
@@ -24,6 +26,21 @@ describe('rodo init --method-only', () => {
     expect(gi).not.toContain('rodo/**/*.rodo.md');
     expect(r.stdout).toContain('card files (*.rodo.md) are committed too');
     expect(r.stdout).toContain('rodo new');
+  });
+
+  it('adds the two plain project docs to an old project without touching its files, in its own language', async () => {
+    const repo = tempRepo();
+    await init(repo, { project: 'shop', methodOnly: true, yesFiles: true });
+    const pj = JSON.parse(repo.read('rodo/shop/project.json'));
+    repo.write('rodo/shop/project.json', JSON.stringify({ ...pj, language: { ...pj.language, simple: 'en' } }));
+    repo.write('rodo/shop/project/brief.md', 'my brief\n');
+    rmSync(join(repo.root, 'rodo/shop/project/project-overview.md'));
+    rmSync(join(repo.root, 'rodo/shop/project/how-it-works.md'));
+    const r = await init(repo, { project: 'shop', methodOnly: true, yesFiles: true });
+    expect(r.code).toBe(0);
+    expect(repo.read('rodo/shop/project/brief.md')).toBe('my brief\n');
+    expect(repo.read('rodo/shop/project/project-overview.md')).toContain('## Parts of the project');
+    expect(repo.read('rodo/shop/project/how-it-works.md')).toContain('## The big picture');
   });
 
   it('R2: project-owned files are never overwritten, and a second run changes nothing', async () => {

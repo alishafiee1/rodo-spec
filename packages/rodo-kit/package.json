@@ -1,6 +1,6 @@
 {
   "name": "@rodo/rodo-kit",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "private": true,
   "description": "RODO method kit. Bundled into rodo-spec; only content and tests here.",
   "scripts": {

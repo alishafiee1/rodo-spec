@@ -38,7 +38,9 @@ When initialized within a repository, RODO organizes agent capabilities, project
         ├── project/
         │   ├── brief.md              # Plain-language project overview
         │   ├── architecture.md       # Stack, components, data model & test setup
-        │   └── glossary.md           # Domain terms and definitions
+        │   ├── glossary.md           # Domain terms and definitions
+        │   ├── project-overview.md   # Plain plan for a client: parts, ticked when finished
+        │   └── how-it-works.md       # How each part works and why, for a beginner
         └── cycles/
             └── NNN-slug/             # Discrete feature/task cycle (e.g., 001-auth-flow)
                 ├── card.rodo.md      # Cycle card metadata, checklist, refs & progress notes

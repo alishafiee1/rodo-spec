@@ -2,6 +2,16 @@
 
 Kit 2.1+ is installed and updated by `rodo init` (the 2.0 scripts `rodo-install.cjs` and `rodo-update.cjs` are replaced by it). Do the steps for every version you skipped.
 
+## 2.2.1 → 2.3.0 (two plain project docs)
+
+What changes:
+- **New files.** `project/project-overview.md` (for a client, parts with ticks) and `project/how-it-works.md` (for a beginner). The writing rules are in the new skill file `project-docs.md`.
+- **Planner and coder.** The planner updates these files before work starts when a new feature or major change does not fit them; the coder makes them true and ticks the part when a card closes.
+- **`rodo validate`** warns `PROJECT_DOC_TOO_LONG` when one of them passes its word limit. It never blocks anything.
+- **`rodo init`** uses the project's own language when it adds missing files to an existing project.
+
+Steps: run `rodo init`. It adds the two files without touching existing ones. The next planner session fills them in. `RULES.md` is never replaced: compare it with the kit's new one (new section on the two docs). Commit: `git commit -am "chore: RODO kit 2.3.0"`.
+
 ## 2.1.0 → 2.2.0 (English templates, rodo new, safer sync)
 
 What changes:
