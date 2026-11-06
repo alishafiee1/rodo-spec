@@ -1,5 +1,7 @@
 # RODO: cards are synced with the board, not with git
 *.rodo.md
+# This kit example commits cycle cards for tests and documentation (card-format, run-kit-tests.sh).
+!rodo/cycles/*/card.rodo.md
 .rodo/
 node_modules/
 .features-gen/
