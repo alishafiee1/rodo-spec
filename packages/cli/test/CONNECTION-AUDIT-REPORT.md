@@ -15,11 +15,26 @@
 | **npm `repository` field** | `git+https://github.com/alishafiee1/rodo-spec.git` → `packages/cli` |
 | **Tarball CLI version** | `dist/index.js` embeds `version: "2.6.0"` |
 | **GitHub `alishafiee1/rodo-spec` @ `main`** | **2.3.0**; tags: `v2.1.0`, `release/2.3.0` only — **no `v2.6.0` tag/branch** |
-| **`alishafiee1/rodo-spec-v2`** | **404** — not a public repo |
+| **`alishafiee1/rodo-spec-v2`** | **Private** — user-verified via authenticated SCM (`package.json`: `rodo-spec-monorepo` **2.7.0**, pnpm 9.15.9). **Not readable in this cloud run** (see access blocker below). An unauthenticated GitHub API `404` is **not** proof the repo is absent. |
 | **Safeguards in npm tarball only** | `ALREADY_BOUND`, `BOARD_ALREADY_USED`, `--rebind`, `BOARD_CHANGED` present in `dist/index.js` (lines ~13688, 14036, 14060, 14929 in unpacked tarball) |
 | **Safeguards in git `main` source** | **Absent** (`rg` on `packages/cli/src`) |
 
-**Resolution:** For the requested **2.6.0** audit, the **published npm tarball** is the authoritative consumer artifact. The **GitHub monorepo on `main` is stale** relative to npm (metadata links to this repo but source is not pushed for 2.4–2.6). Restoring parity requires publishing-source commit(s) not present in this branch.
+**Resolution (layered):**
+
+1. **npm `rodo-spec@2.6.0` tarball** — authoritative for what `npm install` runs today (black-box suite).
+2. **`alishafiee1/rodo-spec` `main` @ 2.3.0** — stale vs npm and vs private **v2 @ 2.7.0** (current development monorepo per user).
+3. **`alishafiee1/rodo-spec-v2`** — likely canonical **source** for releases after 2.3.0; migrate connection-audit tests there when a cloud agent is launched **on that repo** with SCM access.
+
+### Cloud agent access blocker (this run)
+
+| Check | Result |
+|-------|--------|
+| Cursor Cloud `environment.repos` | Only `github.com/alishafiee1/rodo-spec` |
+| Dynamic MCP catalog | No `cursor-github` / `get_file_contents` namespace |
+| `gh` CLI principal | `cursor` (service); `gh repo view alishafiee1/rodo-spec-v2` → GraphQL **Could not resolve** / REST **404** (insufficient scope to private repo) |
+| Action | **Cannot clone, checkout, or open PR on `rodo-spec-v2` from this VM.** Coordinator: launch cloud agent with `rodo-spec-v2` in environment repos (or user token with repo scope). |
+
+**PR [#2](https://github.com/alishafiee1/rodo-spec/pull/2)** stays on `rodo-spec` only; a separate PR on v2 is **not opened** here.
 
 ## Test layers
 
@@ -71,14 +86,20 @@ Do **not** treat source characterization rows as safety assurance.
 
 Detailed SRC results: same as prior audit file sections (S12–S28 unchanged in `connection-audit.test.ts`).
 
-## Test counts (expected)
+## Test counts (meaningful, not double-counted)
 
-| Suite | Passed | Failed | Skipped |
-|-------|--------|--------|---------|
-| All `packages/cli` tests | ~213 | **0** (suite green) | 0 |
-| Of which `it.fails` KNOWN_BUG | 3 **expected failures** counted as pass by Vitest | — | — |
+Command: `pnpm build && pnpm --filter rodo-spec test`
 
-`it.fails` tests prove source **does not** meet npm 2.6.0 safety bar while keeping CI green.
+| Count | Meaning |
+|-------|---------|
+| **213** | Vitest **engine** results: every `it()` resolved green (including Vitest `it.fails` semantics). |
+| **3 `it.fails`** | **Desired safety** on source **2.3.0** — tests that *should* pass when source matches npm 2.6.0; they **fail logically** but Vitest marks the example **passed** because failure was expected. Proof: source lacks `ALREADY_BOUND` / `BOARD_ALREADY_USED` / `BOARD_CHANGED`. |
+| **~26** | In-process mocked scenarios in `connection-audit.test.ts` (not a separate npm run). |
+| **6** | npm **2.6.0** black-box (`npm-2.6.0-blackbox.test.ts`) — all **PASS** on safeguards + subprocess login. |
+| **4** | Source **characterization** (unsafe behavior documented, not safety PASS). |
+| **1** | Subprocess `init --method-only` on **workspace built dist 2.3.0** only. |
+
+**213 passing does not mean source is safe** — npm tarball black-box + `it.fails` carry that signal. npm **2.6.0** audit remains valid independent of v2 access.
 
 ## Remaining real E2E / manual (not mocked)
 
