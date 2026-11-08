@@ -19,7 +19,6 @@ import { runValidate } from '../src/commands/validate';
 import { BUILTIN_SERVER } from '../src/commands/server';
 import { discover } from '../src/core/discovery';
 import { repoFingerprint } from '../src/core/git';
-import { readProject, writeProject } from '../src/core/project';
 import { CLI_VERSION } from '../src/commands/version';
 import { newState, writeBase, writeState } from '../src/sync/state';
 import { addCycle, cardText, exec, initProject, snapshotTree, tempRepo } from './helpers/temp-repo';
@@ -105,35 +104,7 @@ describe('S04 wrong server (code for mock, default builtin)', () => {
   });
 });
 
-describe('S05 rebind without --rebind (contract gap)', () => {
-  it('current CLI allows rebinding to another board without ALREADY_BOUND', async () => {
-    const repo = tempRepo();
-    await connectInit(repo, 'shop', { connect: 'RODO-TEST-AAAA' });
-    const pj0 = JSON.parse(repo.read('rodo/shop/project.json'));
-    expect(pj0.boardId).toBe('b1');
-    const r = await exec(repo, (ctx) => runInit(ctx, { project: 'shop', server: MOCK_ORIGIN, board: 'b2', yesFiles: true }));
-    expect(r.code).toBe(0);
-    const pj1 = JSON.parse(repo.read('rodo/shop/project.json'));
-    expect(pj1.boardId).toBe('b2');
-  });
-});
-
-describe('S06 rebind with --rebind flag', () => {
-  it('BLOCKED: CLI has no --rebind option in commander', () => {
-    expect(true).toBe(true);
-  });
-});
-
-describe('S07 two folders one board', () => {
-  it('BLOCKED: no BOARD_ALREADY_USED client guard in this revision', async () => {
-    const repo = tempRepo();
-    await connectInit(repo, 'shop', { connect: 'RODO-TEST-AAAA' });
-    await exec(repo, (ctx) => runInit(ctx, { project: 'back', methodOnly: true, yesFiles: true }));
-    const r = await exec(repo, (ctx) => runInit(ctx, { project: 'back', server: MOCK_ORIGIN, board: 'b1', yesFiles: true }));
-    expect(r.code).toBe(0);
-    expect(JSON.parse(repo.read('rodo/back/project.json')).boardId).toBe('b1');
-  });
-});
+// S05–S07 bind safeguards: see connection-safety-source.test.ts (source) and npm-2.6.0-blackbox.test.ts (tarball).
 
 describe('S08 two projects two boards', () => {
   it('each project folder keeps its own boardId', async () => {
@@ -178,19 +149,7 @@ describe('S10 logout then bind same board', () => {
   });
 });
 
-describe('S11 manual boardId edit', () => {
-  it('sync against swapped board id still uses project.json board (no BOARD_CHANGED code)', async () => {
-    const repo = tempRepo();
-    await connectInit(repo, 'shop', { connect: 'RODO-TEST-AAAA' });
-    const dir = join(repo.root, 'rodo/shop');
-    const cur = readProject(dir, 'shop').project!;
-    writeProject(dir, { ...cur, boardId: 'b2' });
-    mock.seedLogin();
-    const r = await exec(repo, (ctx) => runSync(ctx, { check: true }));
-    expect(r.code).toBe(0);
-    expect(r.stdout).not.toContain('BOARD_CHANGED');
-  });
-});
+// S11 BOARD_CHANGED: connection-safety-source.test.ts + npm-2.6.0-blackbox.test.ts
 
 describe('S12 two collaborators same ancestry', () => {
   it('pull on clone B sees card pushed from clone A', async () => {

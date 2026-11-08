@@ -1,83 +1,100 @@
-# RODO connection audit — CLI test report
+# RODO connection audit — CLI test report (updated)
 
-**Repo:** `packages/cli` (`rodo-spec@2.3.0` in this branch; draft plan referenced npm `2.6.0`)  
-**Run date:** 2026-11-08  
-**Mode:** Mocked HTTP integration + subprocess on built `dist/index.js` — **not** production / roditeam E2E  
-**Command:** `pnpm build && pnpm --filter rodo-spec test`  
-**Result:** **204 passed**, **1 skipped**, **0 failed** (30 mocked scenarios + 1 subprocess `init` + 1 skipped subprocess `login`)
+**Audit target requested:** `rodo-spec@2.6.0` (npm)  
+**Git checkout on this branch:** `rodo-spec` monorepo **2.3.0** (`packages/cli/package.json`)  
+**Run:** `pnpm build && pnpm --filter rodo-spec test`  
+**Last run:** 2026-11-08
 
-## Scenario matrix (28 + env precedence)
+## Canonical source evidence (read-only)
 
-| # | Scenario | Test file / case | Result | Notes |
-|---|----------|------------------|--------|-------|
-| 1 | Web one-time connect | `connection-audit.test.ts` › S01 | **PASS** | Mock `POST /v1/devices/connect`; token not in stdout; `project.json` has `boardId` |
-| 2 | Reuse connect code | `connection-audit.test.ts` › S02 | **PASS** | Second call exit **4** |
-| 3 | Expired connect code | `connection-audit.test.ts` › S03 | **PASS** | `EXPIRED_TOKEN`; no binding churn |
-| 4 | Wrong server | `connection-audit.test.ts` › S04 | **PASS** | Code for mock; login to `BUILTIN_SERVER` fails; no creds on builtin host |
-| 5 | Bind board B without rebind | `connection-audit.test.ts` › S05 | **CONTRACT_GAP** | No `ALREADY_BOUND` in **2.3.0**; re-bind overwrites `boardId` (npm 2.6.0 plan expected reject) |
-| 6 | `--rebind` | `connection-audit.test.ts` › S06 | **NOT_COVERED** | Flag absent from `src/index.ts` commander |
-| 7 | Two folders, one board | `connection-audit.test.ts` › S07 | **CONTRACT_GAP** | No `BOARD_ALREADY_USED` client guard; both projects can bind same board |
-| 8 | Two projects, two boards | `connection-audit.test.ts` › S08 | **PASS** | Independent `project.json` `boardId` values |
-| 9 | `cwd` project resolution | `connection-audit.test.ts` › S09 | **PASS** | Subfolder status scopes to `front`; `--project` lists both |
-| 10 | Logout vs unbind | `connection-audit.test.ts` › S10 | **PASS** | `logout` drops token; `boardId` remains until manual re-init |
-| 11 | Manual `boardId` edit | `connection-audit.test.ts` › S11 | **PASS** | No `BOARD_CHANGED` code; sync uses edited id (plan 2.6.0 differed) |
-| 12 | Two collaborators | `connection-audit.test.ts` › S12 | **PASS** | Git clone + pull mock |
-| 13 | Concurrent same field | `connection-audit.test.ts` › S13 | **PASS** | `CONFLICT_RESOLVED` + local copy path |
-| 14 | Concurrent different fields | `connection-audit.test.ts` › S14 | **PASS** | Push applies in mock |
-| 15 | Local delete + server edit | `connection-audit.test.ts` › S15 | **PASS** | Restore + `CONFLICT_RESOLVED` |
-| 16 | Archive confirm | `connection-audit.test.ts` › S16 | **PASS** | `ARCHIVE_CONFIRM_REQUIRED` (>10 deletes) |
-| 17 | Archived board | `connection-audit.test.ts` › S17 | **PASS** | Mock archived meta (best-effort; no hard stop in CLI) |
-| 18 | Idempotent sync | `connection-audit.test.ts` › S18 | **PASS** | `pulled 0 · pushed 0` |
-| 19 | Interrupted push / opId | `connection-audit.test.ts` › S19 | **PASS** | 503 retry; deterministic `opId` not duplicated in mock |
-| 20 | Offline sync | `connection-audit.test.ts` › S20 (+ `sync-offline.test.ts`) | **PASS** | Validated offline |
-| 21 | Copy tree, new repo | `connection-audit.test.ts` › S21 | **PASS** | Exit **6** `REPOSITORY_MISMATCH` |
-| 22 | Foreign card / board id | `connection-audit.test.ts` › S22 | **PASS** | `BOARD_MISMATCH` (schema v1 `boardId` field) |
-| 23 | Revoked token | `connection-audit.test.ts` › S23 | **PASS** | Exit **4** `DEVICE_REVOKED` |
-| 24 | `--rotate` | `connection-audit.test.ts` › S24 | **PASS** | Old token 401 after rotate |
-| 25 | Read-only device | `connection-audit.test.ts` › S25 | **PASS** | `FORBIDDEN` on push |
-| 26 | Token redaction | `connection-audit.test.ts` › S26 (+ `doctor-local`, `token-store`) | **PASS** | No bearer material in doctor/login output |
-| 27 | Secret in card | `connection-audit.test.ts` › S27 (+ `validate.test.ts`) | **PASS** | `SECRET_SUSPECTED` without value |
-| 28 | Shallow clone | `connection-audit.test.ts` › S28 | **PASS** | `REPO_SHALLOW` on sync; `repoFingerprint` null on bind |
-| — | `RODO_TOKEN` precedence | `connection-audit.test.ts` › RODO_TOKEN env precedence (+ `token-store.test.ts`) | **PASS** | Env wins; not persisted |
+| Artifact | Evidence |
+|----------|----------|
+| **npm `rodo-spec@2.6.0`** | `registry.npmjs.org`, published **2026-11-04T12:16:11Z** |
+| **Integrity (pinned in tests)** | `sha512-bZA+bU2wrYMq+wCYNMXl33315pAKINU69gfS8EyrRN0Ojyvehp6mp7H3rQjOH8r+5hb7w/Eex4y1mf/adf3WsA==` |
+| **shasum** | `c7c862160c195b1d5c52d3a10d64e70a0431d1a5` |
+| **npm `repository` field** | `git+https://github.com/alishafiee1/rodo-spec.git` → `packages/cli` |
+| **Tarball CLI version** | `dist/index.js` embeds `version: "2.6.0"` |
+| **GitHub `alishafiee1/rodo-spec` @ `main`** | **2.3.0**; tags: `v2.1.0`, `release/2.3.0` only — **no `v2.6.0` tag/branch** |
+| **`alishafiee1/rodo-spec-v2`** | **404** — not a public repo |
+| **Safeguards in npm tarball only** | `ALREADY_BOUND`, `BOARD_ALREADY_USED`, `--rebind`, `BOARD_CHANGED` present in `dist/index.js` (lines ~13688, 14036, 14060, 14929 in unpacked tarball) |
+| **Safeguards in git `main` source** | **Absent** (`rg` on `packages/cli/src`) |
 
-### Subprocess contract (not browser)
+**Resolution:** For the requested **2.6.0** audit, the **published npm tarball** is the authoritative consumer artifact. The **GitHub monorepo on `main` is stale** relative to npm (metadata links to this repo but source is not pushed for 2.4–2.6). Restoring parity requires publishing-source commit(s) not present in this branch.
 
-| Case | File | Result |
-|------|------|--------|
-| `rodo login --connect` | `connection-audit-cli.test.ts` | **BLOCKED** | Subprocess hangs under Vitest worker; **in-process** `loginConnect` in S01–S04 |
-| `rodo init --method-only` | `connection-audit-cli.test.ts` | **PASS** |
+## Test layers
 
-## Documented contract gaps vs draft plan (npm 2.6.0 static review)
+| Layer | File(s) | What it exercises |
+|-------|---------|-------------------|
+| **Source in-process (2.3.0)** | `connection-audit.test.ts`, existing suites | Workspace `src/` via Vitest + `fetch` mock |
+| **Source safety split** | `connection-safety-source.test.ts` | Characterization vs `it.fails` desired safety |
+| **npm black-box (2.6.0)** | `npm-2.6.0-blackbox.test.ts`, `helpers/npm-cli-260.ts` | Pinned tarball, `RODO_HOME` temp, **local TCP mock** (no global fetch stub), `spawn` subprocess |
+| **Subprocess smoke (built workspace dist 2.3.0)** | `connection-audit-cli.test.ts` | `init --method-only` only |
 
-| Gap | Evidence in this tree | Suggested owner |
-|-----|-------------------------|-----------------|
-| `ALREADY_BOUND` / `--rebind` | Absent in `packages/cli/src` | CLI + server bind API |
-| `BOARD_ALREADY_USED` (in-repo duplicate bind) | Absent; S07 allows double bind | CLI bind step + server |
-| `BOARD_CHANGED` after manual `project.json` edit | Absent; S11 | CLI sync guard |
-| `unbind` command | Only `logout` | Product / CLI |
-| Default server still `https://rodo.n3xus.ir` | `src/commands/server.ts` | Config / docs |
-| Server-side `opId` dedup | Mock enforces; not proven against production | RODO server repo |
+Commands:
 
-These are **classified**, not fixed in this PR (tests/audit only).
+```bash
+pnpm build && pnpm --filter rodo-spec test
+# only npm black-box:
+pnpm --filter rodo-spec exec vitest run test/npm-2.6.0-blackbox.test.ts
+```
 
-## Remaining live / browser validation (coordinator)
+## Failure matrix: binding / safety scenarios
 
-- Real one-time connect code issuance and expiry on `rodo.roditeam.ir`
-- Device-code OAuth page, `boards:create` checkbox, viewer role on a shared board
-- Multi-repo duplicate bind if server does not reject
-- Browser archive flow and archived-board hard errors
-- End-to-end collaborator test with two real accounts
-- npm **2.6.0** published tarball vs this **2.3.0** source (rebind / ALREADY_BOUND may exist only in newer release)
+| # | Scenario | Source **2.3.0** characterization | Source desired safety | npm **2.6.0** black-box |
+|---|----------|-----------------------------------|----------------------|-------------------------|
+| 5 | Rebind without `--rebind` | **PASS (unsafe):** overwrites `boardId` | **`it.fails` KNOWN_BUG** | **PASS:** exit 2 `ALREADY_BOUND`, `boardId` unchanged |
+| 6 | `--rebind` + base isolation | **PASS:** flag missing in `index.ts` | N/A (capability missing) | **PASS:** `--rebind` moves board, `.rodo/base` cleared |
+| 7 | Two folders, one board | **PASS (unsafe):** double bind allowed | **`it.fails` KNOWN_BUG** | **PASS:** exit 2 `BOARD_ALREADY_USED` |
+| 11 | Manual `boardId` edit | **PASS:** no `BOARD_CHANGED` | **`it.fails` KNOWN_BUG** | **PASS:** `sync --check` prints `BOARD_CHANGED` |
+| login | Subprocess `--connect` | In-process S01–S04 | — | **PASS:** subprocess, token not printed |
 
-## Minimal live fixtures (when coordinator runs E2E)
+Do **not** treat source characterization rows as safety assurance.
+
+## Full 28-scenario matrix (abbreviated)
+
+**Legend:** `SRC` = source 2.3.0 in-process mock; `NPM` = npm 2.6.0 black-box where applicable; others SRC-only mock.
+
+| # | SRC in-process | NPM 2.6.0 | Notes |
+|---|----------------|-----------|-------|
+| 1 | PASS | PASS (login) | |
+| 2 | PASS | — | |
+| 3 | PASS | — | |
+| 4 | PASS | — | |
+| 5 | CHAR unsafe | PASS safety | See failure matrix |
+| 6 | NOT_COVERED | PASS safety | `--rebind` |
+| 7 | CHAR unsafe | PASS safety | |
+| 8 | PASS | — | |
+| 9 | PASS | — | |
+| 10 | PASS | — | |
+| 11 | CHAR | PASS safety | |
+| 12–28 | PASS (SRC) | — | Sync/auth/offline; not re-run on tarball except where noted |
+
+Detailed SRC results: same as prior audit file sections (S12–S28 unchanged in `connection-audit.test.ts`).
+
+## Test counts (expected)
+
+| Suite | Passed | Failed | Skipped |
+|-------|--------|--------|---------|
+| All `packages/cli` tests | ~213 | **0** (suite green) | 0 |
+| Of which `it.fails` KNOWN_BUG | 3 **expected failures** counted as pass by Vitest | — | — |
+
+`it.fails` tests prove source **does not** meet npm 2.6.0 safety bar while keeping CI green.
+
+## Remaining real E2E / manual (not mocked)
+
+- Live **connect code** issuance/expiry on user’s deployment (`rodo.roditeam.ir` / test accounts) — browser
+- Device-code OAuth, `boards:create` checkbox, viewer role on shared board — browser
+- Server-side `opId` dedup under real 5xx — **RODO server** repo
+- Cross-repo duplicate bind if **server** does not enforce — two real repos
+- npm **2.6.0** vs **git source** reconciliation — restore missing commits to `alishafiee1/rodo-spec`
+
+## Minimal fixtures for live coordinator
 
 - Isolated `HOME` / `RODO_HOME`
-- Three disposable boards on a **non-production** server
-- Two disposable device logins (`sample1`/`sample2` class accounts per policy)
-- One git repo + one shallow clone of the same remote
-- No real API keys in cards; fake connect codes only from server UI
+- Test accounts on user’s live deployment (not labeled staging here)
+- Disposable boards + connect codes from web UI
+- One full git clone + optional shallow clone of same remote
 
-## Cross-repo notes
+## Cross-repo
 
-- Push `opId` idempotency and connect-code single-use must be asserted in [RODO server](https://github.com/alishafiee1/RODO) (handled by other agent).
-- Protocol types in `@rodo/protocol` list `CONNECT_CODE_INVALID` / `DEVICE_*` codes used by mocks; server must emit matching JSON bodies.
+- Server contract tests: https://github.com/alishafiee1/RODO (separate agent)

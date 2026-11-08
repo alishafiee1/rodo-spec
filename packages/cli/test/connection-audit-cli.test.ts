@@ -13,7 +13,7 @@ describe('CLI subprocess (built dist)', () => {
     delete process.env.RODO_TOKEN;
   });
 
-  it.skip('rodo login --connect subprocess (Vitest worker blocks child fetch; see S01 in-process)', () => {});
+  // npm 2.6.0 subprocess login: npm-2.6.0-blackbox.test.ts (local HTTP mock, no fetch stub)
 
   it('runs rodo init --method-only as a subprocess', () => {
     if (!existsSync(cli)) throw new Error('run pnpm build before connection-audit-cli tests');
